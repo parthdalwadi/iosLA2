@@ -25,6 +25,7 @@ class TaskListTVC: UITableViewController, UISearchBarDelegate {
         // self.clearsSelectionOnViewWillAppear = false
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
          self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
     }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -131,8 +132,8 @@ class TaskListTVC: UITableViewController, UISearchBarDelegate {
             let Ndays = allTasks![indexPath.row].value(forKey: "daysNeeded") as! Int
             let Adays = allTasks![indexPath.row].value(forKey: "daysAdded") as! Int
             
-            cell.detailTextLabel?.text = (Ndays == Adays) ? "☑️" :"\(Adays)/\(Ndays)"
-            cell.backgroundColor =  (Ndays == Adays) ? UIColor.green: UIColor.magenta
+            cell.detailTextLabel?.text = (Adays >= Ndays) ? "☑️" :"\(Adays)/\(Ndays)"
+            cell.backgroundColor =  (Adays >= Ndays) ? #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1) : #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
             
             return cell }
         
@@ -206,6 +207,7 @@ class TaskListTVC: UITableViewController, UISearchBarDelegate {
             self.tableView.reloadData()
             
         }
+        addDay.backgroundColor = #colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1)
         return UISwipeActionsConfiguration(actions: [DeleteAction, addDay])
     }
     
