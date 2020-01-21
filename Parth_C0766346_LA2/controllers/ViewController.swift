@@ -30,8 +30,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         
-        var tap = UIGestureRecognizer(target: self, action: #selector(removeKeypad))
-        view.addGestureRecognizer(tap)
+        
         // set context for accessing task entity
         if !isNewTask {
             timeStampL.isHidden = false
@@ -47,13 +46,7 @@ class ViewController: UIViewController {
     }
     
     
-    @objc func removeKeypad(){
-        
-        titleL.resignFirstResponder()
-        detailL.resignFirstResponder()
-        daysNeededL.resignFirstResponder()
-        
-    }
+
 
     
     
