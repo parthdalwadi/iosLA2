@@ -42,11 +42,20 @@ class ViewController: UIViewController {
             titleL.isEnabled = true
         }
        
+        var tapG = UITapGestureRecognizer(target: self, action: #selector(removeKeypad))
+        view.addGestureRecognizer(tapG)
         
     }
     
     
 
+    @objc func removeKeypad(){
+        
+        titleL.resignFirstResponder()
+        detailL.resignFirstResponder()
+        daysNeededL.resignFirstResponder()
+        
+    }
 
     
     

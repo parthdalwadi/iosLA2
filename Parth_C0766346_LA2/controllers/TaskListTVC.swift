@@ -44,9 +44,12 @@ class TaskListTVC: UITableViewController, UISearchBarDelegate {
         
     }
     
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        searchBar.resignFirstResponder()
+    }
     
-    
-    
+
     // MARK: - Table view data source
 
     @IBAction func unwindToList(_ unwindSegue: UIStoryboardSegue) {
