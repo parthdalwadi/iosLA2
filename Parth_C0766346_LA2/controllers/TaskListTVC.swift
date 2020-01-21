@@ -15,7 +15,7 @@ class TaskListTVC: UITableViewController, UISearchBarDelegate {
 
     var allTasks: [NSManagedObject]?
     var showAlert = false
-    
+    var emptyAlert = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,10 +52,17 @@ class TaskListTVC: UITableViewController, UISearchBarDelegate {
     @IBAction func unwindToList(_ unwindSegue: UIStoryboardSegue) {
            let s = unwindSegue.source as! ViewController
         
-        if (s.isNewTask && isTaskExist(title: s.titleL.text!)){
+        if(s.titleL.text!.isEmpty || s.detailL.text!.isEmpty || s.daysNeededL.text!.isEmpty){
+            
+            showAlert = true
+            emptyAlert = true
+            
+        }
+        else if (s.isNewTask && isTaskExist(title: s.titleL.text!)){
             
             // alert
             showAlert = true
+            emptyAlert = false
            
             
             
@@ -75,7 +82,7 @@ class TaskListTVC: UITableViewController, UISearchBarDelegate {
         
         if showAlert{
             
-             okAlert(msg: "Task with the same name already exists")
+            okAlert(msg: emptyAlert ? "you forgot to add all details!! \n Please add the task again!": "Task with the same name already exists")
             
         }
         
